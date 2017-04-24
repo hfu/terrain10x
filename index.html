@@ -6,16 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <meta name="description" content="Cesiumを使った地形強調のサンプルプログラム" />
-  <meta property="og:image" content="https://hwtnv.github.io/terrain10x/screen.jpg" />
+  <meta property="og:image" content="https://hfu.github.io/terrain10x/screen.jpg" />
   <meta property="og:description" content="Cesiumを使った地形強調のサンプルプログラム" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@hwtnv" />
-  <meta name="twitter:creator" content="@hwtnv" />
   <meta name="twitter:title" content="Cesium地形強調サンプル" />
   <meta name="twitter:description" content="Cesiumを使った地形強調のサンプルプログラム" />
-  <meta name="twitter:image" content="https://hwtnv.github.io/terrain10x/screen.jpg" />
+  <meta name="twitter:image" content="https://hfu.github.io/terrain10x/screen.jpg" />
   <title>Cesium地形強調サンプル｜An interactive terrain exaggeration example</title>
   <script src="Cesium/Cesium.js"></script>
+  <script src="http://gsi-cyberjapan.github.io/gsimaps-globe/globe/resource/JapanGSITerrainProvider.js"></script>
   <style>
     @import url(Cesium/Widgets/widgets.css);
     html,
@@ -70,7 +69,14 @@
       requestWaterMask: true,
       requestVertexNormals: true
     });
-    viewer.terrainProvider = cesiumTerrainProviderMeshes;
+    var gsiTerrainProvider = new Cesium.JapanGSITerrainProvider({
+      url: "//cyberjapandata.gsi.go.jp/xyz/png_dem10b/{z}/{x}/{y}.png",
+      requestWaterMask: true,
+      requestVertexNormals: true,
+      maxZoom: 14
+    });
+    cesiumTerrainProviderMeshes = gsiTerrainProvider; // <== FIXME
+    viewer.terrainProvider = cesiumTerrainProviderMeshes; // <== FIXME
 
     changeViewPoint(0, 3);
 
