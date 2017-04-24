@@ -71,8 +71,6 @@
     });
     var gsiTerrainProvider = new Cesium.JapanGSITerrainProvider({
       url: "//cyberjapandata.gsi.go.jp/xyz/png_dem10b/{z}/{x}/{y}.png",
-      requestWaterMask: true,
-      requestVertexNormals: true,
       maxZoom: 14
     });
     cesiumTerrainProviderMeshes = gsiTerrainProvider; // <== FIXME
